@@ -10,6 +10,10 @@ wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 
+wp-content/themes/gjones/node_modules/
+wp-content/themes/gjones/.sass-cache/
+wp-content/plugins/
+
 /.htaccess
 /license.txt
 /readme.html
