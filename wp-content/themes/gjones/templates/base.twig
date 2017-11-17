@@ -7,6 +7,15 @@
 {% endblock %}
 
 	<body class="{{body_class}}" data-template="base.twig">
+
+
+
+	{#
+		THREE JS STUFFS
+		<script src="{{path}}/assets/js/three-js/build/three.js"></script>
+		<script src="{{path}}/assets/js/three-js/examples/js/Detector.js"></script>
+		<script src="{{path}}/assets/js/three-js/examples/js/libs/stats.min.js"></script>
+	#}
 		<header class="header" >
 			{% block header %}
 				<div class="wrapper">
@@ -39,7 +48,6 @@
 				{% include 'footer.twig' %}
 			</footer>
 			{{ function('wp_footer') }}
-			<script src="/wp-content/themes/gjones/assets/js/dist/scripts.min.js"></script>
 		{% endblock %}
 	</body>
 </html>

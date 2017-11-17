@@ -1,0 +1,120 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			<h1 class="article-h1">{{post.title}}</h1>
+
+				{% if posts %}
+					{% include ('partial/review-filter-form.twig') %}
+				<div class="reviews">
+
+
+					{% for post in posts  %}
+						<div class="review grid" id="r-{{ post.ID }}">
+							{% if post.acf.screenshot_1 %}
+								<div class="review__image__wrapper grid__item four-twelfths">
+									<div class="review__image">
+										<a class="review__link" href="/reviews/{{post.post_name}}">
+											<img alt="{{post.acf.screenshot_1.alt}}" src="{{post.acf.screenshot_1.url}}"/>
+										</a>
+									</div>
+								</div>
+							{% endif %}	
+							{% if post.acf.screenshot_1 %} 
+								{% set class = 'eight-twelfths' %}
+							{% else %}
+								{% set class = 'one-whole' %}
+							{% endif %}
+							<div class="grid__item {{ class }}">
+								<div class="review__text grid">
+						{# LEFT SIDE #}
+									<div class="grid__item three-quarters">
+										<h2 class="review__title">
+											<a class="review__link" href="/reviews/{{post.post_name}}">{{ post.post_title }}
+											</a>
+										</h2>
+
+										{% if post.acf.rating %}
+											<div class="review__rating">
+												{% if post.acf.rating == 1 %}
+													<i class="fa fa-star fa-lg"></i>
+												{% endif %}
+												{% if post.acf.rating == 2 %}
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+												{% endif %}
+												{% if post.acf.rating == 3 %}
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+												{% endif %}
+												{% if post.acf.rating == 4 %}
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+												{% endif %}
+												{% if post.acf.rating == 5 %}
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+													<i class="fa fa-star fa-lg"></i>
+												{% endif %}
+											</div>
+										{% endif %}
+											<p class="review__description">{{ post.acf.description }}</p>
+										</div>
+								
+							{# RIGHT SIDE #}
+										<div class="grid__item one-quarter">
+										{% if post.acf.has_free %}
+											<span class="free">Free{% if post.acf.cost %}*{% endif %}</span>
+											{% if post.acf.cost %}
+												<p class="review__cost"><span class="upgrade">Upgrade:</span> {{ post.acf.cost }}</p>
+											{% endif %}
+											
+										{% endif %}
+									
+											{% if post.acf.review_cats %}
+												<ul class="review__categories">
+													{% for c in post.acf.review_cats %}
+														<li class="cat-icon cat-{{c}}">{{ c }}</li>
+													{% endfor %}
+												</ul>
+											{% endif %}
+										</div>
+							
+									
+
+									{#
+									{% if post.acf.screenshot_2 %}
+										<img src="{{post.acf.screenshot_2}}"/>
+									{% endif %}
+									
+									{% if post.acf.screenshot_3 %}
+										<img src="{{post.acf.screenshot_3}}"/>
+									{% endif %}
+									#}
+
+									{#
+									{% if post.acf.link %}
+
+									{% endif %}
+									#}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+				{% endif %}
+ 
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}
+
+
+
+
+

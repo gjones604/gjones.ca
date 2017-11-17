@@ -1,0 +1,65 @@
+{% extends "base-full.twig" %}
+
+{% block content %}
+
+    {% if hero.show_or_hide == 'Show' %}
+        <div class="grid">
+            <div class="grid__item one-whole">
+                {% include ('partial/hero.twig') %}
+            </div>
+        </div>
+    {% endif %}
+
+
+
+    <div class="grid courses">
+        {% for post in posts %}
+            <div class="grid__item one-third course">
+
+                {% if post.post_title %}
+                    <div class="course__item">
+                        <h2>{{ post.post_title }}</h2>
+                    </div>
+                {% endif %}
+
+                {% if post.acf.number_of_positions %}
+                    <div class="course__item">
+                        <span class="course__item-label">Positions</span>
+                        <div class="course__item-data">{{ post.acf.number_of_positions }}</div>
+                    </div>
+                {% endif %}
+
+                {% if post.acf.description %}
+                    <div class="course__item">
+                        <span class="course__item-label">Description</span>
+                        <div class="course__item-data">{{ post.acf.description }}</div>
+                    </div>
+                {% endif %}
+                
+                {% if post.acf.requirements %}
+                    <div class="course__item">
+                        <span class="course__item-label">Requirements</span>
+                        <div class="course__item-data">{{ post.acf.requirements }}</div>
+                    </div>
+                {% endif %}
+                
+                {% if post.acf.compensation %}
+                    <div class="course__item">
+                        <span class="course__item-label">Compensation</span>
+                        <div class="course__item-data">{{ post.acf.compensation }}</div>
+                    </div>
+                {% endif %}
+
+                {% if post.acf.selected_courses %}
+                    <div class="course__item">
+                        <span class="course__item-label">Selected Courses</span>
+                        <div class="course__item-data">{{ post.acf.selected_courses }}</div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

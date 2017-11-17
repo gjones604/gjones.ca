@@ -1,9 +1,10 @@
-html{
-    body{
-        background: #252525;
-        color: #fff;
-    }
-    a{
-        color: #fff;
-    }
-}
+@import "reset";
+@import "helpers";
+@import "../fonts/font-awesome/scss/font-awesome";
+@import "navigation";
+@import "hero";
+@import "courses";
+@import "footer";
+
+//@import "reviews";
+//@import "threejs";

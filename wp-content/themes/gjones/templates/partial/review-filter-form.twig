@@ -1,0 +1,26 @@
+<div class="review__filters grid">
+        <form id="review-filters">
+            <div class="grid__item one-third">
+                <span>Rating</span>
+                <br/>
+                <input type="radio" name="rating" value="asc">Highest First
+                <input type="radio" name="rating" value="desc">Lowest First
+            </div>
+
+            <div class="grid__item one-third">
+                <span>Category</span>
+                <br/>
+                {% for cat in review_cats %}
+                    {{cat}}<input type="checkbox" name="category" value="{{cat}}"/>
+                {% endfor %}
+            </div>
+
+            <div class="grid__item one-third">
+                <span>Free</span>
+                <input type="checkbox" name="free" value="free">
+            </div>
+
+
+        </form>
+    </div>
+</div>

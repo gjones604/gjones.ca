@@ -1,0 +1,135 @@
+.reviews{
+
+}
+.review__link{
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.78);
+    &:hover{
+        color: $colorPrimary;
+        img{
+            border-color: $colorPrimary;
+        }
+    }
+    &:visited:hover{
+        color: $colorPrimary;
+        img{
+            border-color: $colorPrimary;
+        }
+    }
+   
+}
+.review{
+    background: #3c332f;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px 0;
+    border: 1px solid #2b2725;
+    .review__image{
+        //background: rgb(192, 192, 192);
+        margin: 1em;
+        min-height: 200px;
+        img{
+            width: 100%;
+            display: block;
+            border: 1px solid #000;
+        }
+    }
+    .review__rating{
+        margin-bottom: 1em;
+        span{
+            font-size: 11px;
+        }
+        .fa{
+            color: gold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.78);
+        }
+    }
+    .review__text{
+        background: #585351;
+        border-radius: 0px 0px 0px 5px;
+        margin: 1em;
+        padding: 10px;
+        border-top: 1px double #636363;
+        border-right: 0;
+        border-bottom: 2px solid #2b2b2b;
+        border-left: 1px double #636363;
+        .review__title{
+            color: #fff;
+        }
+        .free{
+            color: gold;
+            font-weight: bold;
+        }
+        .upgrade{
+            font-weight: bold;
+        }
+    }
+    .review__description{
+        color: #bdbdbd;
+    }
+    .review__categories{
+        padding-top: 0.9em;
+        list-style-type: none;
+        margin: 0;
+        .cat-icon{
+            &:before{
+                color: $colorPrimary;
+                padding-right: 2px;
+                width: 1.5em;
+                display: inline-block;
+            }
+        }
+        .cat-Activity{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f0a1";
+            }
+        }
+        .cat-Bots{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f013";
+            }
+        }
+        .cat-Donations{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f155";
+            }
+        }
+        .cat-Emotes{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f118";
+            }
+        }
+        .cat-Misc{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f196";
+            }
+        }
+        .cat-Recording{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f03d";
+            }
+        }
+        .cat-Stats{
+            position: relative;
+            &:before{
+                font-family: "FontAwesome";
+                content:"\f080";
+            }
+        }
+    }
+
+}

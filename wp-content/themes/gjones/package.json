@@ -496,17 +496,6 @@
       "resolved": "https://registry.npmjs.org/concat-with-sourcemaps/-/concat-with-sourcemaps-1.0.4.tgz",
       "version": "1.0.4"
     },
-    "connect": {
-      "integrity": "sha1-s1dSWgtMH1BZnNmD4dnv7qlncZg=",
-      "requires": {
-        "debug": "2.2.0",
-        "finalhandler": "0.5.0",
-        "parseurl": "1.3.2",
-        "utils-merge": "1.0.0"
-      },
-      "resolved": "https://registry.npmjs.org/connect/-/connect-3.5.0.tgz",
-      "version": "3.5.0"
-    },
     "connect-history-api-fallback": {
       "integrity": "sha1-PbJPlz9LkjsOgvYZzg3wJBHKYj0=",
       "resolved": "https://registry.npmjs.org/connect-history-api-fallback/-/connect-history-api-fallback-1.4.0.tgz",
@@ -859,39 +848,6 @@
       },
       "resolved": "https://registry.npmjs.org/expand-tilde/-/expand-tilde-1.2.2.tgz",
       "version": "1.2.2"
-    },
-    "express": {
-      "dependencies": {
-        "connect": {
-          "integrity": "sha1-QogKIulDiuWait105Df1iujlKAc=",
-          "requires": {
-            "formidable": "1.0.17",
-            "mime": "1.2.4",
-            "qs": "0.4.2"
-          },
-          "resolved": "https://registry.npmjs.org/connect/-/connect-1.9.2.tgz",
-          "version": "1.9.2"
-        },
-        "mkdirp": {
-          "integrity": "sha1-G79asbqCevI1dRQ0kEJkVfSB/h4=",
-          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.3.0.tgz",
-          "version": "0.3.0"
-        },
-        "qs": {
-          "integrity": "sha1-PKxMhh43GoycR3CsI82o3mObjl8=",
-          "resolved": "https://registry.npmjs.org/qs/-/qs-0.4.2.tgz",
-          "version": "0.4.2"
-        }
-      },
-      "integrity": "sha1-TOjqHzY15p5J8Ou0l7aksKUc5vA=",
-      "requires": {
-        "connect": "1.9.2",
-        "mime": "1.2.4",
-        "mkdirp": "0.3.0",
-        "qs": "0.4.2"
-      },
-      "resolved": "https://registry.npmjs.org/express/-/express-2.5.11.tgz",
-      "version": "2.5.11"
     },
     "extend": {
       "integrity": "sha1-p1Xqe8Gt/MWjHOfnYtuq3F5jZEQ=",
@@ -3236,40 +3192,6 @@
       "resolved": "https://registry.npmjs.org/sntp/-/sntp-1.0.9.tgz",
       "version": "1.0.9"
     },
-    "socket.io": {
-      "dependencies": {
-        "debug": {
-          "integrity": "sha1-QMRT5n5uE8kB3ewxeviYbNqe/4w=",
-          "requires": {
-            "ms": "0.7.2"
-          },
-          "resolved": "https://registry.npmjs.org/debug/-/debug-2.3.3.tgz",
-          "version": "2.3.3"
-        },
-        "ms": {
-          "integrity": "sha1-riXPJRKziFodldfwN4aNhDESR2U=",
-          "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.2.tgz",
-          "version": "0.7.2"
-        },
-        "object-assign": {
-          "integrity": "sha1-ejs9DpgGPUP0wD8uiubNUahog6A=",
-          "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.0.tgz",
-          "version": "4.1.0"
-        }
-      },
-      "integrity": "sha1-PkDZMmN+a9kjmBslyvfFPoO24uE=",
-      "requires": {
-        "debug": "2.3.3",
-        "engine.io": "1.8.0",
-        "has-binary": "0.1.7",
-        "object-assign": "4.1.0",
-        "socket.io-adapter": "0.5.0",
-        "socket.io-client": "1.6.0",
-        "socket.io-parser": "2.3.1"
-      },
-      "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-1.6.0.tgz",
-      "version": "1.6.0"
-    },
     "socket.io-adapter": {
       "dependencies": {
         "debug": {
@@ -3824,15 +3746,6 @@
       "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
       "version": "1.0.2"
     },
-    "ws": {
-      "integrity": "sha1-CC3bbGQehdS7RR8D1S8G6r2x8Bg=",
-      "requires": {
-        "options": "0.0.6",
-        "ultron": "1.0.2"
-      },
-      "resolved": "https://registry.npmjs.org/ws/-/ws-1.1.1.tgz",
-      "version": "1.1.1"
-    },
     "wtf-8": {
       "integrity": "sha1-OS2LotDxw00e4tYw8V0O+2jhBIo=",
       "resolved": "https://registry.npmjs.org/wtf-8/-/wtf-8-1.0.0.tgz",
@@ -3913,18 +3826,30 @@
     }
   },
   "devDependencies": {
+    "autobahn": "^17.5.2",
     "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.13",
     "contact": "^0.2.4",
     "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
+    "gulp-uglify-es": "^0.1.3",
+    "gulp-uglifyes": "^0.1.2",
     "jshint": "^2.9.5",
+    "merge-stream": "^1.0.1",
     "plumber": "^0.4.8",
+    "query-json": "^2.0.1",
     "sass": "^1.0.0-beta.2",
-    "uglify": "^0.1.5"
+    "socket.io": "^2.0.4",
+    "uglify": "^0.1.5",
+    "uglify-es": "^3.1.5",
+    "websocket.io": "^0.2.1",
+    "ws": "^3.2.0"
   }
 }

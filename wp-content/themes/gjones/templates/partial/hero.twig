@@ -1,0 +1,14 @@
+<div class="hero">
+
+    {% if hero.title %}
+        <h1 class="hero__title">{{hero.title}}</h1>
+    {% endif %}
+
+    {% if hero.subtitle %}
+        <h2 class="hero__subtitle">{{hero.subtitle}}</h2>
+    {% endif %}
+
+    {% if hero.description %}
+        <div class="hero__description">{{hero.description}}</div>
+    {% endif %}
+</div>

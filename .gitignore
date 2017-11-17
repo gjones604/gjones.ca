@@ -1,4 +1,7 @@
 *.log
+.vscode
+$Recycle.Bin
+wp-app/
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
@@ -9,10 +12,20 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
-
-wp-content/themes/gjones/node_modules/
-wp-content/themes/gjones/.sass-cache/
 wp-content/plugins/
+
+
+wp-includes/
+wp_Query-notes.txt
+
+wp-content/themes/gjones/.sass-cache/
+wp-content/themes/gjones/assets/js/three-js/
+wp-content/themes/gjones/node_modules/
+wp-content/themes/gjones/vendor/
+wp-content/themes/gjones/php-lib/course-cache/
+wp-content/themes/gjones/php-lib/ratchet/
+wp-content/themes/gjones/php-lib/tracy/
+
 
 /.htaccess
 /license.txt

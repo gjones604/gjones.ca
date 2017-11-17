@@ -1,0 +1,80 @@
+{% extends "base-full.twig" %}
+
+{% block content %}
+
+    {% if hero.show_or_hide == 'Show' %}
+        <div class="grid">
+            <div class="grid__item one-whole">
+                {% include ('partial/hero.twig') %}
+            </div>
+        </div>
+    {% endif %}
+    
+
+    <script type="text/javascript">
+        var jsonData = [];
+        {% for data in cachedData %}
+            jsonData = jsonData.push({{ data }});
+        {% endfor %}
+    </script>
+
+
+    <form id="search-courses">
+        <input type="text" id="search-courses" name="search-courses" placeholder="Search over 1000 courses">
+        
+        <p><label><input type="checkbox" id="select-all"/>Check all</label></p>
+
+        <label for="data-canvas">Canvas</label>
+        <input type="checkbox" name="course-provider" value="canvas" checked="checked">
+
+        <label for="data-eduopen">EDU Open</label>
+        <input type="checkbox" name="course-provider" value="eduopen">
+        
+        <label for="data-edx">EDx</label>
+        <input type="checkbox" name="course-provider" value="edx">
+        
+        <label for="data-futurelearn_courses">Future Learn Courses</label>
+        <input type="checkbox" name="course-provider" value="futurelearn_courses">
+        
+        <label for="data-futurelearn_programs">Future Learn Programs</label>
+        <input type="checkbox" name="course-provider" value="futurelearn_programs">
+        
+        <label for="data-kadenze">Kadenze</label>
+        <input type="checkbox" name="course-provider" value="kadenze">
+        
+        <label for="data-udacity">Udacity</label>
+        <input type="checkbox" name="course-provider" value="udacity">
+    </form>
+
+    <form id="add-posting">
+
+        <label for="posting_title">Title</label>
+        <input type="text" id="posting_title" name="posting_title" value="">
+        <br/>
+
+        <label for="number_of_positions">Number of Positions</label>
+        <input type="text" id="number_of_positions" name="number_of_positions" value="">
+        <br/>
+        
+        <label for="compensation">Compensation</label>
+        <input type="text" id="compensation" name="compensation" value="">
+        <br/>
+        
+        <label for="description">Description</label>
+        <textarea name="description" id="description" form="add-posting"></textarea>
+        <br/>
+        
+        <label for="requirements">Requirements</label>
+        <textarea name="requirements" id="requirements" form="add-posting"></textarea>
+
+        hidden
+        <input type="text" name="selected_courses" id="selected_courses"> 
+
+        <input type="submit" value="Submit">
+    </form>
+
+HERE
+<div class="here"></div>
+
+
+{% endblock %}
