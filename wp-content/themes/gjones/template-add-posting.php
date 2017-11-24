@@ -23,21 +23,32 @@ $user = wp_get_current_user();
  */
 $providers = array(
     'canvas',
-    'eduopen',
-    'edx',
     'futurelearn_courses',
-    'futurelearn_programs',
     'kadenze',
-    'udacity'
+    'udacity',
+    //'edx',
+    //'eduopen',
+    //'futurelearn_programs',
 );
 
 $cachedData = array();
 
-foreach($providers as $provider ){
-    $context['cachedData'][$provider] = get_clean_data_from_api_or_cache($provider);
+foreach($providers as $k=>$provider ){
+    $cachedData[$k] = get_clean_data_from_api_or_cache($provider);
 }
 
-    
+$context['cachedData'] = '';
+foreach($cachedData as $cd){
+    $context['cachedData'] .= $cd;
+}
+
+// Some string clean up to ensure proper JSON formatting.
+$context['cachedData'] = str_replace('}][{', '},{', $context['cachedData']);
+$context['cachedData'] = str_replace('}]{', '},{', $context['cachedData']);
+$context['cachedData'] = str_replace('},"', '},{"', $context['cachedData']);
+$context['cachedData'] = str_replace('}}', '}]', $context['cachedData']);
+
+
 
 
 /*
@@ -65,7 +76,6 @@ foreach ($query->posts as $k=>$post) {
     $post->acf = get_fields($post->ID);
 }
 $context['posts'] = $query->posts;
-
 
 
 Timber::render('page-add-posting.twig', $context);

@@ -78,6 +78,7 @@ function reduce_cached_data( $provider ){
         case 'canvas':
             $raw = get_raw_data_from_api_or_cache('canvas');
             $clean = array();
+            
             foreach( $raw->products as $k=>$field ){
                 $clean[$k]['id'] = 'canvas-'.$field->id;
                 $clean[$k]['title'] = $field->title;
@@ -89,7 +90,8 @@ function reduce_cached_data( $provider ){
                 $clean[$k]['image'] = $field->image;
                 $clean[$k]['logo'] = $field->logo->url;
             }
-            return json_encode($clean);
+
+            return json_encode(array_values($clean));
         break;
 
 
@@ -101,19 +103,20 @@ function reduce_cached_data( $provider ){
             foreach( $raw as $k=>$field ){         
                 $clean[$k]['id'] = 'futurelearn_courses-'.$field->uuid;
                 $clean[$k]['title'] = $field->name;
-                //$clean[$k]['date'] = $field->;
                 $clean[$k]['intro'] = $field->introduction;
                 $clean[$k]['description'] = $field->description;
                 $clean[$k]['url'] = $field->url;
-                //$clean[$k]['free'] = $field->;
-                //$clean[$k]['cost'] = $field->;
                 $clean[$k]['image'] = $field->image_url;
                 $clean[$k]['logo'] = $field->organisation->logo_url;
+                //$clean[$k]['date'] = $field->;
+                //$clean[$k]['free'] = $field->;
+                //$clean[$k]['cost'] = $field->;
                 if (isset($field->trailer)){
                     $clean[$k]['video'] = $field->trailer;
                 }
             }
-            return json_encode($clean);
+
+            return json_encode(array_values($clean));
         break;
      
 
@@ -123,19 +126,21 @@ function reduce_cached_data( $provider ){
             $clean = array();
            
             foreach( $raw as $k=>$field ){
-                $clean[$k]['id'] = 'kadenze-'.$field->id;
-                $clean[$k]['title'] = $field->name;
-                //$clean[$k]['date'] = $field->;
-                $clean[$k]['description'] = $field->description;
-                $clean[$k]['url'] = $field->url;
-                //$clean[$k]['free'] = $field->;
-                //$clean[$k]['cost'] = $field->;
-                $clean[$k]['image'] = $field->logo;
-                //$clean[$k]['logo'] = $field->;
-                $clean[$k]['video'] = $field->promo_video;
-
+                if (strpos($field->description, '<!--[if') === FALSE){
+                    $clean[$k]['id'] = 'kadenze-'.$field->id;
+                    $clean[$k]['title'] = $field->name;
+                    $clean[$k]['description'] = $field->description;
+                    $clean[$k]['url'] = $field->url;
+                    $clean[$k]['image'] = $field->logo;
+                    $clean[$k]['video'] = $field->promo_video;
+                    //$clean[$k]['date'] = $field->;
+                    //$clean[$k]['free'] = $field->;
+                    //$clean[$k]['cost'] = $field->;
+                    //$clean[$k]['logo'] = $field->;
+                }
             }
-            return json_encode($clean);
+
+            return json_encode(array_values($clean));
         break;
 
 
@@ -143,18 +148,18 @@ function reduce_cached_data( $provider ){
         case 'udacity';
             $raw = get_raw_data_from_api_or_cache('udacity');
             $clean = array();
-         
+
             foreach( $raw->courses as $k=>$field ){
                 if ( $field->available == true ){
 
                     $clean[$k]['id'] = 'udacity-'.$field->key;
                     $clean[$k]['title'] = $field->title;
-                    //$clean[$k]['date'] = $field->;
                     $clean[$k]['description'] = $field->short_summary;
                     $clean[$k]['url'] = 'https://www.udacity.com/course/'.$field->slug;
+                    $clean[$k]['image'] = $field->image;
                     //$clean[$k]['free'] = $field->;
                     //$clean[$k]['cost'] = $field->;
-                    $clean[$k]['image'] = $field->image;
+                    //$clean[$k]['date'] = $field->;
                     //$clean[$k]['logo'] = $field->;
                     if ( !empty($field->teaser_video->youtube_url )){
                         $clean[$k]['video'] = $field->teaser_video->youtube_url;
@@ -165,7 +170,8 @@ function reduce_cached_data( $provider ){
                     }
                 }
             }
-            return json_encode($clean);
+
+            return json_encode(array_values($clean));
         break;
     } //end switch
 } //end func

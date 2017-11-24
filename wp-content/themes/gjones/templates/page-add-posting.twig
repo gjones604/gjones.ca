@@ -12,38 +12,42 @@
     
 
     <script type="text/javascript">
-        var jsonData = [];
-        {% for data in cachedData %}
-            jsonData = jsonData.push({{ data }});
-        {% endfor %}
+        var jsonData = {{cachedData}};
     </script>
 
 
     <form id="search-courses">
         <input type="text" id="search-courses" name="search-courses" placeholder="Search over 1000 courses">
-        
-        <p><label><input type="checkbox" id="select-all"/>Check all</label></p>
+
+        <div id="search-results" class="grid">
+        <p>Results: </p>
+        </div>
+
+{#        
+        <p><label for="select-all">Check all</label>
+        <input type="checkbox" name="select-all" id="select-all"/ value="select-all"></p>
 
         <label for="data-canvas">Canvas</label>
         <input type="checkbox" name="course-provider" value="canvas" checked="checked">
 
         <label for="data-eduopen">EDU Open</label>
         <input type="checkbox" name="course-provider" value="eduopen">
-        
+     
         <label for="data-edx">EDx</label>
         <input type="checkbox" name="course-provider" value="edx">
         
         <label for="data-futurelearn_courses">Future Learn Courses</label>
         <input type="checkbox" name="course-provider" value="futurelearn_courses">
-        
+
         <label for="data-futurelearn_programs">Future Learn Programs</label>
         <input type="checkbox" name="course-provider" value="futurelearn_programs">
-        
+      
         <label for="data-kadenze">Kadenze</label>
         <input type="checkbox" name="course-provider" value="kadenze">
         
         <label for="data-udacity">Udacity</label>
         <input type="checkbox" name="course-provider" value="udacity">
+#}
     </form>
 
     <form id="add-posting">
@@ -73,8 +77,7 @@
         <input type="submit" value="Submit">
     </form>
 
-HERE
-<div class="here"></div>
+
 
 
 {% endblock %}
