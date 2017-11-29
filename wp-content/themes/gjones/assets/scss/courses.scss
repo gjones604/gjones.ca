@@ -1,13 +1,48 @@
+
+
+.flex-container{
+    column-count: 2;
+    column-gap: 1em;
+}
+
 .course{
     background: #fff;
     color: #000;
-    margin: 2em auto;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
     padding: 2em;
     box-shadow: 8px 10px 35px #287d51;
+    position: relative;
+    &:hover{
+        cursor: pointer;
+    }
+    &.course__added:after{
+        font-family: "FontAwesome";
+        content: "\f058";
+        font-size: 2em;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+
+    }   
     .course__item{
         margin: 1em auto;
         span{
             font-weight: bold;
         }
+    }
+}
+
+#course-list{
+    background: #fff;
+    position: fixed;
+    top: 30%;
+    right: 0px;
+    color: #000;
+    width: 300px;
+    z-index: 100;
+    .course-list__item{
+        display: block;
     }
 }

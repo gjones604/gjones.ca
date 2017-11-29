@@ -15,13 +15,39 @@
         var jsonData = {{cachedData}};
     </script>
 
+<div class="wrapper">
 
-    <form id="search-courses">
-        <input type="text" id="search-courses" name="search-courses" placeholder="Search over 1000 courses">
+    <form id="add-posting" class="form-vertical">
 
-        <div id="search-results" class="grid">
-        <p>Results: </p>
-        </div>
+        <label for="posting_title">Title</label>
+        <input type="text" id="posting_title" name="posting_title" value="">
+        <br/>
+
+        <label for="number_of_positions">Number of Positions</label>
+        <input type="text" id="number_of_positions" name="number_of_positions" value="">
+        <br/>
+        
+        <label for="compensation">Compensation</label>
+        <input type="text" id="compensation" name="compensation" value="">
+        <br/>
+        
+        <label for="description">Description</label>
+        <textarea name="description" id="description" form="add-posting"></textarea>
+        <br/>
+        
+        <label for="requirements">Requirements</label>
+        <textarea name="requirements" id="requirements" form="add-posting"></textarea>
+
+        hidden
+        <input type="text" name="selected_courses" id="selected_courses" value=""> 
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="search-courses" class="form-vertical">
+        <input type="text" id="search-courses" name="search-courses" placeholder="Search over 1,000 courses">
+
+        
 
 {#        
         <p><label for="select-all">Check all</label>
@@ -49,34 +75,15 @@
         <input type="checkbox" name="course-provider" value="udacity">
 #}
     </form>
-
-    <form id="add-posting">
-
-        <label for="posting_title">Title</label>
-        <input type="text" id="posting_title" name="posting_title" value="">
-        <br/>
-
-        <label for="number_of_positions">Number of Positions</label>
-        <input type="text" id="number_of_positions" name="number_of_positions" value="">
-        <br/>
         
-        <label for="compensation">Compensation</label>
-        <input type="text" id="compensation" name="compensation" value="">
-        <br/>
-        
-        <label for="description">Description</label>
-        <textarea name="description" id="description" form="add-posting"></textarea>
-        <br/>
-        
-        <label for="requirements">Requirements</label>
-        <textarea name="requirements" id="requirements" form="add-posting"></textarea>
+        <div id="course-list">
+            <h3>Selected Courses:</h3>
+            <ul class="course-list"><li></li></ul>
+        </div>
+        <div id="search-results" class="flex-container"></div>
 
-        hidden
-        <input type="text" name="selected_courses" id="selected_courses"> 
 
-        <input type="submit" value="Submit">
-    </form>
-
+</div>{# /grid #}
 
 
 
