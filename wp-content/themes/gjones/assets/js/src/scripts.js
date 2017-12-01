@@ -8,6 +8,8 @@
     });
     
 
+
+    // Fuse.js Search Options
     var options = {
         shouldSort: true,
         //findAllMatches: true,
@@ -22,7 +24,12 @@
         ]
     };
 
+
+
     
+    /*
+     * Make a new Fuse search
+     */ 
     var fuse = new Fuse(jsonData, options);
     //console.log(fuse); 
 
@@ -31,7 +38,6 @@
      * Form handler for Search Courses
      */
     var searchForm = $('#search-courses');
-
     searchForm.find('input[name=search-courses]').on('keyup', function(e){
 
         var displayResults = $('#search-results');
@@ -44,12 +50,11 @@
         setTimeout(function(){
             // Search Results
             var result = fuse.search(keyword);
-            //console.log(result);
+            // console.log(result);
             displayResults.html('');
             
             if(result){
                 if (result.length < 100){
-      
                     $.each(result, function(){
                         var des = this.item.description;
                         des = fixhtml(des.substring(0, 300)+'...');
@@ -83,50 +88,47 @@
  
 
 
-    /*
-    * Click handler to add Course to user list.
-    */
-    var courseList = [];
-    var o = '';
 
+    /*
+     * Click handler to add Course to user list.
+     */
+    var courseList = [];
+    
     $('#search-results').on('click', '.course', function(){
+        var courseIDs = [];
+        
         $this = $(this);
         courseTitle = $this.find('.ct').html();
+        courseID = $this.attr('id');
 
         if ( $this.hasClass('course__added') ){
             $this.removeClass('course__added');
-            courseList = removeCourseFromList(courseList, '<li>'+courseTitle+'</li>');
+            courseList = removeCourseFromList(courseList, '<li class="course-list__item" id="c_'+courseID+'">'+courseTitle+'</li>');
             $('.course-list').html(courseList);
         }else{
             $this.addClass('course__added');
             if (courseList.indexOf(courseTitle) == -1){
-                courseList.push('<li>'+courseTitle+'</li>');
+                courseList.push('<li class="course-list__item" id="c_'+courseID+'">'+courseTitle+'</li>');
             }
             $('.course-list').html(courseList);
         }
 
 
-    });  
+        // Grab selected course IDs and set them as hidden field's value.
+        $('.course-list .course-list__item').each(function(){
+            courseIDs.push( $(this).attr('id') );
+        });
+        $('input[name=selected_courses]').val(courseIDs);
+ 
+    }); // end of click listener for .course
+  
 
 
-
-    /*
-
-        Click on course.
-            Add ID to list array
-        
-        Click on course again
-            Remove from list array by ID
-        
-        always
-            re-render html based on array.
-
-    */
 
     
-  //o = '<span class="course-list__item" id="item-'+$this.attr('id')+'"><span class="course-list__remove">x</span><a href="#'+$this.attr('id')+'">'+$this.find('.ct').html()+'</a></span>';
 
-    // Adds a course to the courseList array.
+    
+    // Removes a course from the courseList array.
     function removeCourseFromList(courseList, course){
         for(var i in courseList){
             if(courseList[i] == course){
@@ -138,16 +140,7 @@
     }
 
 
-
-/*
-// TODO: Add selected items to hidden field and attach during form submit.
-    var courseList = $('#selected_courses').val();
-    courseList += $this.attr('id')+',';
-    $('#selected_courses').val(courseList);
-*/
-        
- 
-
+    // HELPER: This will close any open tags that are trimmed.
     function fixhtml(html){
         var div = document.createElement('div');
         div.innerHTML=html;

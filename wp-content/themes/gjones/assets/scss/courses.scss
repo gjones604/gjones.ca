@@ -8,15 +8,11 @@
 .course{
     background: #fff;
     color: #000;
-    display: inline-block;
-    margin: 0 0 1em;
-    width: 100%;
+
     padding: 2em;
     box-shadow: 8px 10px 35px #287d51;
     position: relative;
-    &:hover{
-        cursor: pointer;
-    }
+
     &.course__added:after{
         font-family: "FontAwesome";
         content: "\f058";
@@ -34,6 +30,15 @@
     }
 }
 
+#search-results .course{
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
 #course-list{
     background: #fff;
     position: fixed;
@@ -42,7 +47,77 @@
     color: #000;
     width: 300px;
     z-index: 100;
-    .course-list__item{
-        display: block;
-    }
+    //.course-list__item{
+        
+    //}
 }
+
+
+
+/* Acordeon styles */
+.tab {
+    position: relative;
+    margin-bottom: 1px;
+    width: 100%;
+    overflow: hidden;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    label {
+        position: relative;
+        display: block;
+        padding: 0 0 0 1em;
+        font-weight: bold;
+        line-height: 3;
+        cursor: pointer;
+    }
+    .tab-content {
+        max-height: 0;
+        overflow: hidden;
+        -webkit-transition: max-height .35s;
+        -o-transition: max-height .35s;
+        transition: max-height .35s;
+    }
+    .tab-content p {
+        margin: 1em;
+    }
+    /* :checked */
+    input:checked ~ .tab-content {
+        max-height: 300em;
+    }
+    /* Icon */ 
+    label::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: block;
+        width: 3em;
+        height: 3em;
+        line-height: 3;
+        text-align: center;
+        -webkit-transition: all .35s;
+        -o-transition: all .35s;
+        transition: all .35s;
+    }
+    input[type=checkbox] + label::after {
+        content: "+";
+    }
+    input[type=radio] + label::after {
+        content: "\25BC";
+    }
+    input[type=checkbox]:checked + label::after {
+        transform: rotate(315deg);
+    }
+    input[type=radio]:checked + label::after {
+        transform: rotateX(180deg);
+    }
+  }
+
+
+
+  
+  

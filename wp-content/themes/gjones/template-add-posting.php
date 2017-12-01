@@ -49,9 +49,4 @@ $context['cachedData'] = str_replace('},"', '},{"', $context['cachedData']);
 $context['cachedData'] = str_replace('}}', '}]', $context['cachedData']);
 
 
-
-
-
-
-
 Timber::render('page-add-posting.twig', $context);

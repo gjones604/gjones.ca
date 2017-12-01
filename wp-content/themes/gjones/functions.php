@@ -10,8 +10,6 @@ require __DIR__ . '/vendor/autoload.php';
 	include('php-lib/ajax-funcs.php');
 	include('php-lib/course-cache.php');
 
-	//include('php-lib/ratchet/src/Chat.php'); // PHP Websockets with Rachet
-
 	
 	function scripts_and_styles() {
 
@@ -25,7 +23,4 @@ require __DIR__ . '/vendor/autoload.php';
 		wp_enqueue_script('compiled_js', '', '', '', true);
 	}
 
-	add_action('wp_enqueue_scripts', 'scripts_and_styles', 100);
-
-	//require get_template_directory()."/angular-housing/hello-world/dist/index.html";
-	
+	add_action('wp_enqueue_scripts', 'scripts_and_styles', 100);	

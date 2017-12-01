@@ -14,7 +14,18 @@
 
     <div class="grid courses">
         {% for post in posts %}
-            <div class="grid__item one-third course">
+            <div class="grid__item one-half course">
+                    
+                <div class="controls">
+                    <span class="controls__delete">x</span>
+                    {#
+                    TODO: Come up with list of job board websites
+                    Write simple API connections to create a job posting
+
+                    #}
+                    <span class="controls__"></span>
+                </div>
+
 
                 {% if post.post_title %}
                     <div class="course__item">
@@ -25,40 +36,84 @@
                 {% if post.acf.number_of_positions %}
                     <div class="course__item">
                         <span class="course__item-label">Positions</span>
-                        <div class="course__item-data">{{ post.acf.number_of_positions }}</div>
+                        <div class="course__item-data">
+                            {{ post.acf.number_of_positions }}
+                        </div>
                     </div>
                 {% endif %}
 
                 {% if post.acf.description %}
                     <div class="course__item">
                         <span class="course__item-label">Description</span>
-                        <div class="course__item-data">{{ post.acf.description }}</div>
+                        <div class="course__item-data">
+                            {{ post.acf.description }}
+                        </div>
                     </div>
                 {% endif %}
-                
+
                 {% if post.acf.requirements %}
                     <div class="course__item">
                         <span class="course__item-label">Requirements</span>
-                        <div class="course__item-data">{{ post.acf.requirements }}</div>
+                        <div class="course__item-data">
+                            {{ post.acf.requirements }}
+                        </div>
                     </div>
                 {% endif %}
-                
+
                 {% if post.acf.compensation %}
                     <div class="course__item">
                         <span class="course__item-label">Compensation</span>
-                        <div class="course__item-data">{{ post.acf.compensation }}</div>
+                        <div class="course__item-data">
+                            {{ post.acf.compensation }}
+                        </div>
                     </div>
                 {% endif %}
 
                 {% if post.acf.selected_courses %}
                     <div class="course__item">
                         <span class="course__item-label">Selected Courses</span>
-                        <div class="course__item-data">{{ post.acf.selected_courses }}</div>
-                    </div>
+                        {% for course in post.acf.selected_courses_data %}              
+                            <div class="tab">
+                                    <input id="tab-{{course.id}}" type="checkbox" name="tabs">
+                                    <label for="tab-{{course.id}}">{{course.title}}</label>
+
+                                <div class="tab-content">
+                                    <div class="course">
+                                        <div class="course__item-data">
+                                            <h2>{{ course.title }}</h2>
+
+                                            <p>{{ course.intro }}</p>
+                                            {% if course.description %}
+                                                <div class="tab">
+                                                    <input id="tab-{{course.id}}__description" type="checkbox" name="tabs">
+                                    <label for="tab-{{course.id}}__description">Read Full Description</label>
+                                                    <div class="tab-content">
+                                                        {{ course.description }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if course.image %}
+                                                <img src="{{ course.image }}"/>
+                                            {% endif %}
+
+                                            <a class="btn" href="{{ course.url }}">View Course</a>
+
+                                            {% if course.video %}
+                                                <a class="btn--secondary" href="{{ course.video }}">Video</a>
+                                            {% endif %}
+                                        </div> {# course__item-data #}
+                                    </div> {# course #}
+                                </div>{# tab-conten #}
+                            </div>{# tab #}
+                        {% endfor %}
+                    </div>{# course__item #}
                 {% endif %}
-            </div>
+            </div>{# grid__item one-third course #}
         {% endfor %}
-    </div>
+    </div> {# grid courses #}
+
+
 
 
 

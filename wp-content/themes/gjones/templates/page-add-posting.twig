@@ -38,10 +38,9 @@
         <label for="requirements">Requirements</label>
         <textarea name="requirements" id="requirements" form="add-posting"></textarea>
 
-        hidden
-        <input type="text" name="selected_courses" id="selected_courses" value=""> 
+        <input type="hidden" name="selected_courses" id="selected_courses" value=""> 
 
-        <input type="submit" value="Submit">
+        <input id="create-job-posting-submit" type="submit" value="Submit">
     </form>
 
     <form id="search-courses" class="form-vertical">
@@ -78,7 +77,7 @@
         
         <div id="course-list">
             <h3>Selected Courses:</h3>
-            <ul class="course-list"><li></li></ul>
+            <ul class="course-list"></ul>
         </div>
         <div id="search-results" class="flex-container"></div>
 
