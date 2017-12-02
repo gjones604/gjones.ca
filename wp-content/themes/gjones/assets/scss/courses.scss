@@ -117,7 +117,11 @@
     }
   }
 
+i.fa-file-text-o:hover{
+    cursor: pointer;
+}
 
-
-  
-  
+.copied{
+    font-family: $bodyFontStack;
+    padding-left: 0.5em;
+}

@@ -36,36 +36,32 @@
                 {% if post.acf.number_of_positions %}
                     <div class="course__item">
                         <span class="course__item-label">Positions</span>
-                        <div class="course__item-data">
-                            {{ post.acf.number_of_positions }}
-                        </div>
+                        <i class="fa fa-file-text-o"></i>
+                        <div class="course__item-data">{{ post.acf.number_of_positions }}</div>
                     </div>
                 {% endif %}
 
                 {% if post.acf.description %}
                     <div class="course__item">
                         <span class="course__item-label">Description</span>
-                        <div class="course__item-data">
-                            {{ post.acf.description }}
-                        </div>
+                        <i class="fa fa-file-text-o"></i>
+                        <div class="course__item-data">{{ post.acf.description }}</div>
                     </div>
                 {% endif %}
 
                 {% if post.acf.requirements %}
                     <div class="course__item">
                         <span class="course__item-label">Requirements</span>
-                        <div class="course__item-data">
-                            {{ post.acf.requirements }}
-                        </div>
+                        <i class="fa fa-file-text-o"></i>
+                        <div class="course__item-data">{{ post.acf.requirements }}</div>
                     </div>
                 {% endif %}
 
                 {% if post.acf.compensation %}
                     <div class="course__item">
                         <span class="course__item-label">Compensation</span>
-                        <div class="course__item-data">
-                            {{ post.acf.compensation }}
-                        </div>
+                        <i class="fa fa-file-text-o"></i>
+                        <div class="course__item-data">{{ post.acf.compensation }}</div>
                     </div>
                 {% endif %}
 
@@ -74,8 +70,8 @@
                         <span class="course__item-label">Selected Courses</span>
                         {% for course in post.acf.selected_courses_data %}              
                             <div class="tab">
-                                    <input id="tab-{{course.id}}" type="checkbox" name="tabs">
-                                    <label for="tab-{{course.id}}">{{course.title}}</label>
+                                <input id="tab-{{course.id}}" type="checkbox" name="tabs">
+                                <label for="tab-{{course.id}}">{{course.title}}</label>
 
                                 <div class="tab-content">
                                     <div class="course">
@@ -86,7 +82,7 @@
                                             {% if course.description %}
                                                 <div class="tab">
                                                     <input id="tab-{{course.id}}__description" type="checkbox" name="tabs">
-                                    <label for="tab-{{course.id}}__description">Read Full Description</label>
+                                                    <label for="tab-{{course.id}}__description">Read Full Description</label>
                                                     <div class="tab-content">
                                                         {{ course.description }}
                                                     </div>
@@ -97,10 +93,10 @@
                                                 <img src="{{ course.image }}"/>
                                             {% endif %}
 
-                                            <a class="btn" href="{{ course.url }}">View Course</a>
+                                            <a class="btn" target="_blank" href="{{ course.url }}">View Course</a>
 
                                             {% if course.video %}
-                                                <a class="btn--secondary" href="{{ course.video }}">Video</a>
+                                                <a class="btn--secondary" target="_blank" href="{{ course.video }}">Video</a>
                                             {% endif %}
                                         </div> {# course__item-data #}
                                     </div> {# course #}
@@ -112,9 +108,6 @@
             </div>{# grid__item one-third course #}
         {% endfor %}
     </div> {# grid courses #}
-
-
-
 
 
 {% endblock %}

@@ -25,6 +25,8 @@
     };
 
 
+if ( $('body').hasClass('page-template-template-add-posting') ){
+
 
     
     /*
@@ -123,7 +125,7 @@
     }); // end of click listener for .course
   
 
-
+}
 
     
 
@@ -147,5 +149,26 @@
         return (div.innerHTML);
     }
 
+
+
+
+    // Copy text to clipboard
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+      
+    $('.fa-file-text-o').on('click', function(){
+        var $this = $(this);
+        copyToClipboard($this.next('.course__item-data'));
+        $this.append('<span class="copied">Copied</span>');
+        setTimeout(function(){
+            $('.copied').fadeOut();
+        }, 500);
+    });
+    
 
 })( jQuery );
