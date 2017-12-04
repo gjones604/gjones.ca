@@ -80,6 +80,7 @@ function reduce_cached_data( $provider ){
             $clean = array();
             
             foreach( $raw->products as $k=>$field ){
+                $clean[$k]['provider'] = 'canvas';
                 $clean[$k]['id'] = 'canvas-'.$field->id;
                 $clean[$k]['title'] = $field->title;
                 $clean[$k]['date'] = $field->date;
@@ -100,7 +101,8 @@ function reduce_cached_data( $provider ){
             $raw = get_raw_data_from_api_or_cache('futurelearn_courses');
             $clean = array();
        
-            foreach( $raw as $k=>$field ){         
+            foreach( $raw as $k=>$field ){      
+                $clean[$k]['provider'] = 'futurelearn';   
                 $clean[$k]['id'] = 'futurelearn_courses-'.$field->uuid;
                 $clean[$k]['title'] = $field->name;
                 $clean[$k]['intro'] = $field->introduction;
@@ -127,6 +129,7 @@ function reduce_cached_data( $provider ){
            
             foreach( $raw as $k=>$field ){
                 if (strpos($field->description, '<!--[if') === FALSE){
+                    $clean[$k]['provider'] = 'kadenze';
                     $clean[$k]['id'] = 'kadenze-'.$field->id;
                     $clean[$k]['title'] = $field->name;
                     $clean[$k]['description'] = $field->description;
@@ -151,7 +154,7 @@ function reduce_cached_data( $provider ){
 
             foreach( $raw->courses as $k=>$field ){
                 if ( $field->available == true ){
-
+                    $clean[$k]['provider'] = 'udacity';
                     $clean[$k]['id'] = 'udacity-'.$field->key;
                     $clean[$k]['title'] = $field->title;
                     $clean[$k]['description'] = $field->short_summary;

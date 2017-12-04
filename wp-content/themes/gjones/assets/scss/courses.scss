@@ -8,20 +8,9 @@
 .course{
     background: #fff;
     color: #000;
-
     padding: 2em;
     box-shadow: 8px 10px 35px #287d51;
     position: relative;
-
-    &.course__added:after{
-        font-family: "FontAwesome";
-        content: "\f058";
-        font-size: 2em;
-        position: absolute;
-        top: 0px;
-        right: 10px;
-
-    }   
     .course__item{
         margin: 1em auto;
         span{
@@ -37,20 +26,91 @@
     &:hover{
         cursor: pointer;
     }
+    &:after{
+        content: "";
+        background-position: bottom right;
+        padding: 1em;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 1em;
+        right: 1em;
+        position: absolute;
+        background-size: 25%;
+    }
+
+    &:hover:before{
+        font-family: "FontAwesome";
+        content: "\f067";
+        font-size: 2em;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+    }
+
+    &.provider_futurelearn:after{
+        background-image: url('../img/logo-futurelearn.gif');
+    }
+    &.provider_canvas:after{
+        background-image: url('../img/logo-canvas.gif');
+    }    
+    &.provider_kadenze:after{
+        background-image: url('../img/logo-kadenze.gif');
+    }
+    &.provider_udacity:after{
+        background-image: url('../img/logo-udacity.gif');
+    }
+
+    &.course__added{
+        &:before{
+        font-family: "FontAwesome";
+        content: "\f058";
+        font-size: 2em;
+        position: absolute;
+        top: 0px;
+        right: 10px;   
+        }
+        /*
+        &:hover:before{
+            content: "\f068"; 
+        }
+        */
+            
+    }   
 }
 
 #course-list{
     background: #fff;
+    border: 1px solid rgb(11, 151, 109);
     position: fixed;
     top: 30%;
     right: 0px;
     color: #000;
+    padding: 1em;
     width: 300px;
     z-index: 100;
-    //.course-list__item{
-        
-    //}
+    h3{
+        float: left;
+        margin-right: 1em;
+    }
+    #clear-list{
+        position: relative;
+        top: 0.4em;
+        &:hover{
+            cursor: pointer;
+            &:after{
+                content:"clear list";
+                font-size: 80%;
+                padding-left: 0.3em;
+            }
+        }
+    }
+    .course-list{
+        clear: both;
+    }
 }
+
 
 
 
@@ -117,11 +177,19 @@
     }
   }
 
+i.fa-file-text-o{
+    font-size: 80%;
+}
 i.fa-file-text-o:hover{
     cursor: pointer;
+
 }
 
 .copied{
     font-family: $bodyFontStack;
-    padding-left: 0.5em;
+    padding: 0.5em 0.8em;
+    font-size: 80%;
+    background: rgb(51, 51, 51);
+    color: #fff;
+    border-radius: 6px;
 }

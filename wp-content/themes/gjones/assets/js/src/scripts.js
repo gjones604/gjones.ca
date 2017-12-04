@@ -62,7 +62,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
                         des = fixhtml(des.substring(0, 300)+'...');
 
                         var o = '';
-                        o += '<div class="course" id="'+this.item.id+'">';
+                        o += '<div class="course provider_'+this.item.provider+'" id="'+this.item.id+'">';
                             o += '<div class="course__item">';
                             o += '<h2 class="ct">'+this.item.title+'</h2>';
                             o += '<p class="cd">'+des+'</p>';
@@ -125,6 +125,17 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
     }); // end of click listener for .course
   
 
+    $('#clear-list').on('click', function(){
+        var $this = $(this);
+        $('.course-list').html('');
+        courseIDs = [];
+        courseList = [];
+        $('input[name=selected_courses]').val('');
+        $('.course').each(function(){
+            $(this).removeClass('course__added');
+        });
+    });
+
 }
 
     
@@ -164,7 +175,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
     $('.fa-file-text-o').on('click', function(){
         var $this = $(this);
         copyToClipboard($this.next('.course__item-data'));
-        $this.append('<span class="copied">Copied</span>');
+        $this.append('<span class="copied">copied</span>');
         setTimeout(function(){
             $('.copied').fadeOut();
         }, 500);

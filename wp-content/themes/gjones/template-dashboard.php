@@ -75,7 +75,7 @@ $query = new WP_Query( $args );
 foreach ($query->posts as $posting) {
     $posting->acf = array();
     
-    $posting->acf['number_of_positions'] = get_field('number_of_positions', $posting->ID);
+   // $posting->acf['number_of_positions'] = get_field('number_of_positions', $posting->ID);
     $posting->acf['compensation'] = get_field('compensation', $posting->ID);
     $posting->acf['description'] = get_field('description', $posting->ID);
     $posting->acf['requirements'] = get_field('requirements', $posting->ID);
