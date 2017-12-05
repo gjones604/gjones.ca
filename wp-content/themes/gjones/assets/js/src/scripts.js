@@ -12,6 +12,7 @@
     // Fuse.js Search Options
     var options = {
         shouldSort: true,
+        tokenize: true,
         //findAllMatches: true,
         includeScore: true,
         threshold: 0.3,
@@ -20,7 +21,7 @@
         maxPatternLength: 32,
         keys: [
             "title",
-            "description"
+            "intro"
         ]
     };
 
@@ -52,7 +53,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
         setTimeout(function(){
             // Search Results
             var result = fuse.search(keyword);
-            // console.log(result);
+            //console.log(result);
             displayResults.html('');
             
             if(result){
@@ -81,7 +82,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
                         o += '</div>';
                         
                         displayResults.addClass('updated');
-                        displayResults.prepend(o);
+                        displayResults.append(o);
                     });
                 }
             }
@@ -98,7 +99,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
     
     $('#search-results').on('click', '.course', function(){
         var courseIDs = [];
-        
+        $('#course-list').removeClass('hidden');
         $this = $(this);
         courseTitle = $this.find('.ct').html();
         courseID = $this.attr('id');
