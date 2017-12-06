@@ -80,16 +80,20 @@ function reduce_cached_data( $provider ){
             $clean = array();
             
             foreach( $raw->products as $k=>$field ){
-                $clean[$k]['provider'] = 'canvas';
-                $clean[$k]['id'] = 'canvas-'.$field->id;
-                $clean[$k]['title'] = $field->title;
-                $clean[$k]['date'] = $field->date;
-                $clean[$k]['description'] = $field->teaser;
-                $clean[$k]['url'] = $field->url;
-                $clean[$k]['free'] = $field->free;
-                $clean[$k]['cost'] = $field->priceWithCurrency;
-                $clean[$k]['image'] = $field->image;
-                $clean[$k]['logo'] = $field->logo->url;
+                // scan for Chinese characters
+                preg_match("/\p{Han}+/u", $field->title, $match);
+                if ( $match == FALSE ){
+                    $clean[$k]['provider'] = 'canvas';
+                    $clean[$k]['id'] = 'canvas-'.$field->id;
+                    $clean[$k]['title'] = $field->title;
+                    $clean[$k]['date'] = $field->date;
+                    $clean[$k]['description'] = $field->teaser;
+                    $clean[$k]['url'] = $field->url;
+                    $clean[$k]['free'] = $field->free;
+                    $clean[$k]['cost'] = $field->priceWithCurrency;
+                    $clean[$k]['image'] = $field->image;
+                    $clean[$k]['logo'] = $field->logo->url;
+                }
             }
 
             return json_encode(array_values($clean));
@@ -101,20 +105,23 @@ function reduce_cached_data( $provider ){
             $raw = get_raw_data_from_api_or_cache('futurelearn_courses');
             $clean = array();
        
-            foreach( $raw as $k=>$field ){      
-                $clean[$k]['provider'] = 'futurelearn';   
-                $clean[$k]['id'] = 'futurelearn_courses-'.$field->uuid;
-                $clean[$k]['title'] = $field->name;
-                $clean[$k]['intro'] = $field->introduction;
-                $clean[$k]['description'] = $field->description;
-                $clean[$k]['url'] = $field->url;
-                $clean[$k]['image'] = $field->image_url;
-                $clean[$k]['logo'] = $field->organisation->logo_url;
-                //$clean[$k]['date'] = $field->;
-                //$clean[$k]['free'] = $field->;
-                //$clean[$k]['cost'] = $field->;
-                if (isset($field->trailer)){
-                    $clean[$k]['video'] = $field->trailer;
+            foreach( $raw as $k=>$field ){
+                preg_match("/\p{Han}+/u", $field->name, $match);
+                if ( $match == FALSE ){
+                    $clean[$k]['provider'] = 'futurelearn';   
+                    $clean[$k]['id'] = 'futurelearn_courses-'.$field->uuid;
+                    $clean[$k]['title'] = $field->name;
+                    $clean[$k]['intro'] = $field->introduction;
+                    $clean[$k]['description'] = $field->description;
+                    $clean[$k]['url'] = $field->url;
+                    $clean[$k]['image'] = $field->image_url;
+                    $clean[$k]['logo'] = $field->organisation->logo_url;
+                    //$clean[$k]['date'] = $field->;
+                    //$clean[$k]['free'] = $field->;
+                    //$clean[$k]['cost'] = $field->;
+                    if (isset($field->trailer)){
+                        $clean[$k]['video'] = $field->trailer;
+                    }
                 }
             }
 
@@ -128,18 +135,21 @@ function reduce_cached_data( $provider ){
             $clean = array();
            
             foreach( $raw as $k=>$field ){
+                preg_match("/\p{Han}+/u", $field->name, $match);
                 if (strpos($field->description, '<!--[if') === FALSE){
-                    $clean[$k]['provider'] = 'kadenze';
-                    $clean[$k]['id'] = 'kadenze-'.$field->id;
-                    $clean[$k]['title'] = $field->name;
-                    $clean[$k]['description'] = $field->description;
-                    $clean[$k]['url'] = $field->url;
-                    $clean[$k]['image'] = $field->logo;
-                    $clean[$k]['video'] = $field->promo_video;
-                    //$clean[$k]['date'] = $field->;
-                    //$clean[$k]['free'] = $field->;
-                    //$clean[$k]['cost'] = $field->;
-                    //$clean[$k]['logo'] = $field->;
+                    if ( $match == FALSE ){
+                        $clean[$k]['provider'] = 'kadenze';
+                        $clean[$k]['id'] = 'kadenze-'.$field->id;
+                        $clean[$k]['title'] = $field->name;
+                        $clean[$k]['description'] = $field->description;
+                        $clean[$k]['url'] = $field->url;
+                        $clean[$k]['image'] = $field->logo;
+                        $clean[$k]['video'] = $field->promo_video;
+                        //$clean[$k]['date'] = $field->;
+                        //$clean[$k]['free'] = $field->;
+                        //$clean[$k]['cost'] = $field->;
+                        //$clean[$k]['logo'] = $field->;
+                    }
                 }
             }
 
@@ -154,21 +164,24 @@ function reduce_cached_data( $provider ){
 
             foreach( $raw->courses as $k=>$field ){
                 if ( $field->available == true ){
-                    $clean[$k]['provider'] = 'udacity';
-                    $clean[$k]['id'] = 'udacity-'.$field->key;
-                    $clean[$k]['title'] = $field->title;
-                    $clean[$k]['description'] = $field->short_summary;
-                    $clean[$k]['url'] = 'https://www.udacity.com/course/'.$field->slug;
-                    $clean[$k]['image'] = $field->image;
-                    //$clean[$k]['free'] = $field->;
-                    //$clean[$k]['cost'] = $field->;
-                    //$clean[$k]['date'] = $field->;
-                    //$clean[$k]['logo'] = $field->;
-                    if ( !empty($field->teaser_video->youtube_url )){
-                        $clean[$k]['video'] = $field->teaser_video->youtube_url;
-                    }else{
-                        if ( isset($field->teaser_video->vimeo_id )){
-                            $clean[$k]['video'] = 'https://vimeo.com/'.$field->teaser_video->vimeo_id; 
+                    preg_match("/\p{Han}+/u", $field->title, $match);
+                    if ( $match == FALSE ){
+                        $clean[$k]['provider'] = 'udacity';
+                        $clean[$k]['id'] = 'udacity-'.$field->key;
+                        $clean[$k]['title'] = $field->title;
+                        $clean[$k]['description'] = $field->short_summary;
+                        $clean[$k]['url'] = 'https://www.udacity.com/course/'.$field->slug;
+                        $clean[$k]['image'] = $field->image;
+                        //$clean[$k]['free'] = $field->;
+                        //$clean[$k]['cost'] = $field->;
+                        //$clean[$k]['date'] = $field->;
+                        //$clean[$k]['logo'] = $field->;
+                        if ( !empty($field->teaser_video->youtube_url )){
+                            $clean[$k]['video'] = $field->teaser_video->youtube_url;
+                        }else{
+                            if ( isset($field->teaser_video->vimeo_id )){
+                                $clean[$k]['video'] = 'https://vimeo.com/'.$field->teaser_video->vimeo_id; 
+                            }
                         }
                     }
                 }
