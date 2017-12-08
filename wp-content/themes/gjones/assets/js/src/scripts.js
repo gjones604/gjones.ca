@@ -59,15 +59,36 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
             if(result){
                 if (result.length < 100){
                     $.each(result, function(){
+                        var intro = this.item.description;
+                        intro = fixhtml(intro.substring(0, 300));
+                                  
                         var des = this.item.description;
-                        des = fixhtml(des.substring(0, 300)+'...');
+                        var des_out = '';
+                        
+                        if ( intro.length <= 300 ){
+                            des_out = '<div class="cd">'+this.item.description+'</div>';                     
+                        }
+                        
+                        if ( intro.length >= 300 ){
+                            
+                            des = des.substring(300);
+
+                            des_out += '<div class="tab">';
+                                des_out += '<input id="tab-'+this.item.id+'" type="checkbox" name="tabs">';
+                                des_out += '<label for="tab-'+this.item.id+'">'+intro+'</label>';
+                                des_out += '<div class="tab-content cd">'+des+'</div>';
+                            des_out += '</div>';
+                        }
 
                         var o = '';
                         o += '<div class="course provider_'+this.item.provider+'" id="'+this.item.id+'">';
                             o += '<div class="course__item">';
-                            o += '<h2 class="ct">'+this.item.title+'</h2>';
-                            o += '<p class="cd">'+des+'</p>';
-                         /*
+                                o += '<h2 class="ct">'+this.item.title+'</h2>';
+                                o += '<span class="add-to-list">Add To List</span>';
+                                o += des_out;
+
+
+                        /*
                             if ( this.item.image ){
                                 o += '<img class="course__image" src="'+this.item.image+'"/>';  
                             }
@@ -97,7 +118,7 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
      */
     var courseList = [];
     
-    $('#search-results').on('click', '.course', function(){
+    $('#search-results').on('click', '.add-to-list', function(){
         var courseIDs = [];
         $('#course-list').removeClass('hidden');
         $this = $(this);

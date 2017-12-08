@@ -87,7 +87,8 @@ function reduce_cached_data( $provider ){
                     $clean[$k]['id'] = 'canvas-'.$field->id;
                     $clean[$k]['title'] = $field->title;
                     $clean[$k]['date'] = $field->date;
-                    $clean[$k]['description'] = $field->teaser;
+                    $clean[$k]['description'] = str_replace('<h2>', '<h3>', $field->teaser);
+                    $clean[$k]['description'] = str_replace('</h2>', '</h3>', $clean[$k]['description']);
                     $clean[$k]['url'] = $field->url;
                     $clean[$k]['free'] = $field->free;
                     $clean[$k]['cost'] = $field->priceWithCurrency;
@@ -111,13 +112,13 @@ function reduce_cached_data( $provider ){
                     $clean[$k]['provider'] = 'futurelearn';   
                     $clean[$k]['id'] = 'futurelearn_courses-'.$field->uuid;
                     $clean[$k]['title'] = $field->name;
-                    $clean[$k]['intro'] = $field->introduction;
-                    $clean[$k]['description'] = $field->description;
+                    $clean[$k]['description'] = str_replace('<h2', '<h3', $field->description);
+                    $clean[$k]['description'] = str_replace('</h2', '</h3', $clean[$k]['description']);
                     $clean[$k]['url'] = $field->url;
                     $clean[$k]['image'] = $field->image_url;
                     $clean[$k]['logo'] = $field->organisation->logo_url;
+                    $clean[$k]['free'] = true;
                     //$clean[$k]['date'] = $field->;
-                    //$clean[$k]['free'] = $field->;
                     //$clean[$k]['cost'] = $field->;
                     if (isset($field->trailer)){
                         $clean[$k]['video'] = $field->trailer;
@@ -141,7 +142,8 @@ function reduce_cached_data( $provider ){
                         $clean[$k]['provider'] = 'kadenze';
                         $clean[$k]['id'] = 'kadenze-'.$field->id;
                         $clean[$k]['title'] = $field->name;
-                        $clean[$k]['description'] = $field->description;
+                        $clean[$k]['description'] = str_replace('<h2>', '<h3>', $field->description);
+                        $clean[$k]['description'] = str_replace('</h2>', '</h3>', $clean[$k]['description']);
                         $clean[$k]['url'] = $field->url;
                         $clean[$k]['image'] = $field->logo;
                         $clean[$k]['video'] = $field->promo_video;
@@ -169,7 +171,8 @@ function reduce_cached_data( $provider ){
                         $clean[$k]['provider'] = 'udacity';
                         $clean[$k]['id'] = 'udacity-'.$field->key;
                         $clean[$k]['title'] = $field->title;
-                        $clean[$k]['description'] = $field->short_summary;
+                        $clean[$k]['description'] = str_replace('<h2>', '<h3>', $field->short_summary);
+                        $clean[$k]['description'] = str_replace('</h2>', '</h3>', $clean[$k]['description']);
                         $clean[$k]['url'] = 'https://www.udacity.com/course/'.$field->slug;
                         $clean[$k]['image'] = $field->image;
                         //$clean[$k]['free'] = $field->;

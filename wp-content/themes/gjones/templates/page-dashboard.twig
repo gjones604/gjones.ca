@@ -71,33 +71,27 @@
                         {% for course in post.acf.selected_courses_data %}              
                             <div class="tab">
                                 <input id="tab-{{course.id}}" type="checkbox" name="tabs">
-                                <label for="tab-{{course.id}}">{{course.title}}</label>
+                                <label for="tab-{{course.id}}"><h2>{{course.title}}</h2></label>
 
                                 <div class="tab-content">
-                                    <div class="course">
+                                    <div class="course provider_{{course.provider}}">
                                         <div class="course__item-data">
-                                            <h2>{{ course.title }}</h2>
-
-                                            <p>{{ course.intro }}</p>
-                                            {% if course.description %}
-                                                <div class="tab">
-                                                    <input id="tab-{{course.id}}__description" type="checkbox" name="tabs">
-                                                    <label for="tab-{{course.id}}__description">Read Full Description</label>
-                                                    <div class="tab-content">
-                                                        {{ course.description }}
-                                                    </div>
-                                                </div>
-                                            {% endif %}
-
                                             {% if course.image %}
                                                 <img src="{{ course.image }}"/>
                                             {% endif %}
 
-                                            <a class="btn" target="_blank" href="{{ course.url }}">View Course</a>
+                                            <div class="course__buttons">
+                                                <a class="btn" target="_blank" href="{{ course.url }}">View Course</a>
 
-                                            {% if course.video %}
-                                                <a class="btn--secondary" target="_blank" href="{{ course.video }}">Video</a>
+                                                {% if course.video %}
+                                                    <a class="btn--secondary" target="_blank" href="{{ course.video }}">Video</a>
+                                                {% endif %}
+                                            </div>
+
+                                            {% if course.description %}
+                                                {{ course.description }}
                                             {% endif %}
+
                                         </div> {# course__item-data #}
                                     </div> {# course #}
                                 </div>{# tab-conten #}

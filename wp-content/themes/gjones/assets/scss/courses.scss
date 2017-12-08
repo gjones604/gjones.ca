@@ -11,25 +11,7 @@
     padding: 2em;
     box-shadow: 8px 10px 35px #287d51;
     position: relative;
-    .course__item{
-        margin: 1em auto;
-        span{
-            font-weight: bold;
-        }
-    }
-    a{
-        position: relative;
-        z-index: 10;
-    }
-}
 
-#search-results .course{
-    display: inline-block;
-    margin: 0 0 1em;
-    width: 100%;
-    &:hover{
-        cursor: pointer;
-    }
     &:after{
         content: "";
         background-position: bottom right;
@@ -44,6 +26,49 @@
         background-size: 25%;
     }
 
+    &.provider_futurelearn:after{
+        background-image: url('../img/logo-futurelearn.gif');
+    }
+    &.provider_canvas:after{
+        background-image: url('../img/logo-canvas.gif');
+    }    
+    &.provider_kadenze:after{
+        background-image: url('../img/logo-kadenze.gif');
+    }
+    &.provider_udacity:after{
+        background-image: url('../img/logo-udacity.gif');
+    }
+
+    .ct{
+        display: inline-block;
+    }
+    .add-to-list{
+        float: right;
+    }
+    .course__item{
+        margin: 1em auto;
+        span{
+            font-weight: bold;
+        }
+    }
+    a{
+        position: relative;
+        z-index: 10;
+    }
+    .course__buttons{
+        clear: both;
+        margin: 1em 0;
+    }
+}
+
+
+
+
+#search-results .course{
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    
     &:hover:before{
         font-family: "FontAwesome";
         content: "\f067";
@@ -52,6 +77,21 @@
         top: 0px;
         right: 10px;
     }
+    
+    &:after{
+        content: "";
+        background-position: bottom right;
+        padding: 1em;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 1em;
+        right: 1em;
+        position: absolute;
+        background-size: 25%;
+    }
+
 
     &.provider_futurelearn:after{
         background-image: url('../img/logo-futurelearn.gif');
@@ -80,7 +120,6 @@
             content: "\f068"; 
         }
         */
-            
     }   
 }
 
@@ -121,10 +160,14 @@
 /* Acordeon styles */
 .tab {
     position: relative;
-    margin-bottom: 1px;
+    margin: 2em 0;
     width: 100%;
     overflow: hidden;
-
+    z-index: 10;
+    border-bottom: 1px solid #ddd;
+    &:hover{
+        border-bottom: 1px solid #000;
+    }
     input {
         position: absolute;
         opacity: 0;
@@ -133,32 +176,30 @@
 
     label {
         position: relative;
-        display: block;
-        padding: 0 0 0 1em;
-        font-weight: bold;
-        line-height: 3;
+        display: inline-block;
         cursor: pointer;
     }
     .tab-content {
+        display: inline-block;
         max-height: 0;
         overflow: hidden;
         -webkit-transition: max-height .35s;
         -o-transition: max-height .35s;
         transition: max-height .35s;
-    }
-    .tab-content p {
-        margin: 1em;
+        margin-left: 2em;
     }
     /* :checked */
     input:checked ~ .tab-content {
         max-height: 300em;
     }
+    label h2{
+        display: inline;
+    }
     /* Icon */ 
-    label::after {
-        position: absolute;
+    label::before {
         right: 0;
         top: 0;
-        display: block;
+        display: inline-block;
         width: 3em;
         height: 3em;
         line-height: 3;
@@ -167,16 +208,16 @@
         -o-transition: all .35s;
         transition: all .35s;
     }
-    input[type=checkbox] + label::after {
+    input[type=checkbox] + label::before {
         content: "+";
     }
-    input[type=radio] + label::after {
+    input[type=radio] + label::before {
         content: "\25BC";
     }
-    input[type=checkbox]:checked + label::after {
+    input[type=checkbox]:checked + label::before {
         transform: rotate(315deg);
     }
-    input[type=radio]:checked + label::after {
+    input[type=radio]:checked + label::before {
         transform: rotateX(180deg);
     }
   }
