@@ -59,9 +59,10 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
             if(result){
                 if (result.length < 100){
                     $.each(result, function(){
-                        var intro = this.item.description;
-                        intro = fixhtml(intro.substring(0, 300));
-                                  
+                        //var intro = this.item.description;                        
+                        //intro = fixhtml(intro.substring(0, 150));
+                        
+                        /*
                         var des = this.item.description;
                         var des_out = '';
                         
@@ -78,21 +79,32 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
                                 des_out += '<label for="tab-'+this.item.id+'">'+intro+'</label>';
                                 des_out += '<div class="tab-content cd">'+des+'</div>';
                             des_out += '</div>';
-                        }
+                        }*/
 
                         var o = '';
                         o += '<div class="course provider_'+this.item.provider+'" id="'+this.item.id+'">';
                             o += '<div class="course__item">';
                                 o += '<h2 class="ct">'+this.item.title+'</h2>';
                                 o += '<span class="add-to-list">Add To List</span>';
-                                o += des_out;
+                                /*
+                                if ( this.item.image ){
+                                    o += '<img class="course__image" src="'+this.item.image+'"/>';  
+                                }
+                                */
+                                
+                                o += '<div class="tab-content cd">'+this.item.description+'</div>';
 
 
-                        /*
-                            if ( this.item.image ){
-                                o += '<img class="course__image" src="'+this.item.image+'"/>';  
-                            }
-                        */
+                                /*
+                                o += '<div class="tab">';
+                                    o += '<input id="tab-'+this.item.id+'" type="checkbox" name="tabs">';
+                                    o += '<label for="tab-'+this.item.id+'">Read Description</label>';
+                                    o += '<div class="tab-content cd">'+this.item.description+'</div>';
+                                o += '</div>';
+                                */
+
+
+               
                             if ( this.item.url ){
                                 o += '<a target="_blank" class="btn" href="'+this.item.url+'">View Course</a>';
                             }
@@ -202,6 +214,26 @@ if ( $('body').hasClass('page-template-template-add-posting') ){
             $('.copied').fadeOut();
         }, 500);
     });
+    
+
+
+
+        // tabs
+        $('#login-tabs a').click(function (e) {
+            e.preventDefault();
+    
+            $this = $(this);
+    
+            // add class to tab
+            $('#login-tabs li').removeClass('active-tab');
+            $this.parent().addClass('active-tab');
+    
+            // show the right tab
+            $('#page-login .tab-content').hide();
+            $('#page-login ' + $this.attr('href')).show();
+    
+            return false;
+        });
     
 
 })( jQuery );

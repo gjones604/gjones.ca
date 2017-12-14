@@ -90,6 +90,15 @@
 
                                             {% if course.description %}
                                                 {{ course.description }}
+                                                {#
+                                                <div class="tab">
+                                                    <input id="tab-{{course.id}}__description" type="checkbox" name="tabs">
+                                                    <label for="tab-{{course.id}}__description">Read Full Description</label>
+                                                    <div class="tab-content">     
+                                                        {{ course.description }}
+                                                   </div>
+                                                </div>
+                                                #}
                                             {% endif %}
 
                                         </div> {# course__item-data #}

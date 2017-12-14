@@ -1,4 +1,4 @@
-/*if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
 var container, stats;
 var camera, scene, renderer, particles, starField, materials = [], parameters, i, h, color, size;
@@ -199,7 +199,7 @@ function render() {
 	renderer.render( scene, camera );
 	requestAnimationFrame(render);
 }
-*/
+
 
 
 

@@ -1,0 +1,230 @@
+{% extends "base-full.twig" %}
+
+{% block content %}
+
+    {% if hero.show_or_hide == 'Show' %}
+        <div class="grid">
+            <div class="grid__item one-whole">
+                {% include ('partial/hero.twig') %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container">
+       <h1>Login</h1>
+        {# {{ function('wp_login_form') }} #}
+    </div>
+
+
+
+    {% if login.success != 'resetpass' and login.action != 'resetpass' %}
+        <ul class="tabs cf" id="login-tabs">
+            <li class="{% if login.action == 'login'%} active-tab {% endif %}"><a href="#tab-login">Login</a></li>
+            <li class="{% if login.action == 'register' %} active-tab {% endif %}"><a href="#tab-register">Register</a></li>
+            <li class="{% if login.action == 'forgot' %} active-tab {% endif %}>"><a href="#tab-forgot">Forgot?</a></li>
+        </ul>
+    {% endif %}
+
+
+
+
+	<article class="meta-box hentry">
+		<div id="page-login" class="post-content page-login cf">
+
+        {% if login.action == 'register' and login.success %}
+
+			<header class="entry-header">
+				<h1>Success!</h1>
+			</header>
+
+			<div class="message-box message-success">
+				<span class="icon-thumbs-up"></span>
+				Check your email for the password and then return to log in.
+			</div>
+
+        {% elseif login.action == 'forgot' and login.success %}
+
+			<header class="entry-header">
+				<h1>Password recovery</h1>
+			</header>
+
+			<div class="message-box message-info">
+				<span class="icon-bell"></span>
+				Check your email for the instructions to get a new password.
+			</div>
+
+        {% elseif login.action == 'resetpass' and login.success %}
+
+			<header class="entry-header">
+				<h1>Password reset</h1>
+			</header>
+
+			<div class="message-box message-success">
+				<span class="icon-thumbs-up"></span>
+				Your password has been updated. <a href="/login/">Proceed to login</a>.
+			</div>
+
+    {% else %}
+
+			<div id="tab-login" class="tab-content" style="<?php if ( $action != 'login' ) echo 'display:none' ?>">
+
+        {% if login.action == 'login' and login.failed %}
+			<div class="message-box message-error">
+				<span class="icon-attention"></span>
+				{% if login.failed %}
+					Invalid username or password. Please try again.
+				{% endif %}
+			</div>
+        {% endif %}
+
+				<header class="entry-header">
+					<h1 class="entry-title">Login</h1>
+				</header>
+
+				<div class="entry-content">
+					<p>Don't have an account? <a href="/login/?action=register">Sign up now</a>!</p>
+				</div>
+
+				{{ function('wp_login_form') }}
+
+			</div>
+
+			<div id="tab-register" class="tab-content" style="{% if login.action != 'register' %} display:none {% endif %}">
+
+        {% if login.action == 'register' and login.failed %}
+			<div class="message-box message-error">
+				<span class="icon-attention"></span>
+				{% if login.failed == 'invalid_character' %}
+					Username can only contain alphanumerical characters, "_" and "-". Please choose another username.
+				{% elseif login.failed == 'username_exists' %}
+					Username already in use.
+				{% elseif login.failed == 'email_exists' %}
+					E-mail already in use. Maybe you are already registered?
+				{% elseif login.failed == 'empty' %}
+					All fields are required.
+				{% else %}
+					An error occurred while registering the new user. Please try again.
+				{% endif %}
+			</div>
+        {% endif %}
+
+				<header class="entry-header">
+					<h1 class="entry-title">Register</h1>
+				</header>
+
+				<div class="entry-content">
+					<p>Sign up for the cool stuff!</p>
+				</div>
+
+				<form name="registerform" id="registerform" action="/wp-login.php?action=register" method="post">
+					<p>
+						<label for="user_login">Username</label>
+						<input type="text" name="user_login" id="user_login_register" class="input" value="">
+					</p>
+					<p>
+						<label for="user_email">E-mail</label>
+						<input type="text" name="user_email" id="user_email_register" class="input" value="">
+					</p>
+					<p style="display:none">
+						<label for="confirm_email">Please leave this field empty</label>
+						<input type="text" name="confirm_email" id="confirm_email_register" class="input" value="">
+					</p>
+
+					<p id="reg_passmail">A password will be e-mailed to you.</p>
+
+					<input type="hidden" name="redirect_to" value="/login/?action=register&amp;success=1" />
+					<p class="submit"><input type="submit" name="wp-submit" id="wp-submit_register" class="button button-primary button-large" value="Register" /></p>
+				</form>
+
+			</div>
+
+			<div id="tab-forgot" class="tab-content" style="{% if login.action != 'forgot' %} display:none {% endif %}">
+
+    {% if login.action == 'forgot' and login.failed %}
+			<div class="message-box message-error">
+				<span class="icon-attention"></span>
+				{% if login.failed == 'wrongkey' %}
+					The reset key is wrong or expired. Please check that you used the right reset link or request a new one.
+				{% else %}
+					Sorry, we couldn't find any user with that username or email.
+				{% endif %}
+			</div>
+    {% endif %}
+				<header class="entry-header">
+					<h1 class="entry-title">Password recovery</h1>
+				</header>
+
+				<div class="entry-content">
+					<p>Please enter your username or email address. You will receive a link to create a new password.</p>
+				</div>
+
+				<form name="lostpasswordform" id="lostpasswordform" action="/wp-login.php?action=lostpassword" method="post">
+					<p>
+						<label for="user_login">Username or E-mail:</label>
+						<input type="text" name="user_login" id="user_login_pass" class="input" value="">
+					</p>
+
+					<input type="hidden" name="redirect_to" value="/login/?action=forgot&amp;success=1">
+					<p class="submit"><input type="submit" name="wp-submit" id="wp-submit_lostpass" class="button button-primary button-large" value="Get New Password" /></p>
+				</form>
+
+			</div>
+
+
+{% if login.action == 'resetpass' %}
+
+	<div id="tab-resetpass" class="tab-content">
+
+	{% if login.failed %}
+			<div class="message-box message-error">
+				<span class="icon-attention"></span>
+				The passwords don't match. Please try again.
+			</div>
+	{% endif %}
+
+				<header class="entry-header">
+					<h1 class="entry-title">Reset password</h1>
+				</header>
+
+				<div class="entry-content">
+					<p>Create a new password for your account.</p>
+				</div>
+
+				<form name="resetpasswordform" id="resetpasswordform" action="/wp-login.php?action=resetpass" method="post">
+					<p class="form-password">
+						<label for="pass1">New Password</label>
+						<input class="text-input" name="pass1" type="password" id="pass1">
+					</p>
+
+					<p class="form-password">
+						<label for="pass2">Confirm Password</label>
+						<input class="text-input" name="pass2" type="password" id="pass2">
+					</p>
+
+					<input type="hidden" name="redirect_to" value="/login/?action=resetpass&amp;success=1">
+					<?php
+					$rp_key = '';
+					$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
+					if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
+						list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
+					}
+					?>
+					<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>">
+					<p class="submit"><input type="submit" name="wp-submit" id="wp-submit_resetpass" class="button button-primary button-large" value="Get New Password" /></p>
+				</form>
+			</div>
+{% endif %}
+
+
+{% endif %}
+
+		</div>
+	</article>
+
+
+{% endblock %}
+
+
+
+
+
