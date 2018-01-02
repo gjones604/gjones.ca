@@ -1,6 +1,9 @@
 *.log
 .vscode
 $Recycle.Bin
+gjones
+gjones/
+
 wp-app/
 wp-config.php
 wp-content/advanced-cache.php
