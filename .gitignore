@@ -1,10 +1,9 @@
 *.log
 .vscode
 $Recycle.Bin
-gjones
-gjones/
 
-wp-app/
+
+
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
@@ -15,11 +14,6 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
-wp-content/plugins/
-
-
-wp-includes/
-wp_Query-notes.txt
 
 wp-content/themes/gjones/.sass-cache/
 wp-content/themes/gjones/assets/js/three-js/

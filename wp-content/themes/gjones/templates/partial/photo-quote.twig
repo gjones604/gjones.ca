@@ -1,0 +1,16 @@
+<section id="photo-quote" class="grid__item one-whole">
+    <div class="grid">
+        <div class="photo-quote--inner">
+            <div class="shades grid__item md-one-whole one-half"></div>
+                <div class="a-quote roll-over grid__item md-one-whole one-half">
+                {% if post.acf.quote %}
+                    <blockquote class="quote">{{ post.acf.quote }}</blockquote>
+                {% endif %}
+                
+                {% if post.acf.current_interests %}
+                    {{ post.acf.current_interests }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

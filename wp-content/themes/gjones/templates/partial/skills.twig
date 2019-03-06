@@ -1,0 +1,10 @@
+{% if post.acf.skills %}
+    <section id="skills" class="roll-over grid__item sm-one-whole one-half">
+        <h3>Web Dev Skills / General Knowledge</h3>
+        <ul class="split-list">
+            {% for s in post.acf.skills %}
+                <li>{{ s.skill }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}

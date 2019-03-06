@@ -1,0 +1,20 @@
+{% if post.acf.work_history %}
+    <section id="work-history" class="roll-over grid__item sm-one-whole one-half">
+        <h3>Work History</h3>
+        <ul class="work-history">
+            {% for w in post.acf.work_history %}
+                <li>
+                    <i class="fa fa-circle"></i>
+                    <span class="date">{{ w.work_history_start_date }} - {% if w.work_history_end_date %}{{ w.work_history_end_date }}:{% else %}Present:{% endif %}</span>
+                    {{ w.work_history_title }}
+                    {% if w.work_history_image %}
+                        {% if w.work_history_url %}
+                            <a href="{{ w.work_history_url }}" target="_blank">{% endif %}
+                                <img class="logo see-through" alt="{{ w.work_history_image.alt }}" src="{{ w.work_history_image.url }}"/>
+                            {% if w.work_history_url %}</a>{% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}

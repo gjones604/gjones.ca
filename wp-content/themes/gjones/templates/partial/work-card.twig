@@ -1,0 +1,68 @@
+<div class="project buttonfx {{ p.acf.hover_effect }}">
+    <div class="project-logo">
+        {% if p.acf.svg == 'True' %}
+            {% include ('svg/'~ p.acf.svg_name ~'.twig') %}
+        {% endif %}
+
+        {% if p.acf.logo %}
+            <img src="{{ p.acf.logo.url }}" alt="{{p.acf.logo.alt}}"/>
+        {% endif %}
+    </div>
+
+
+    <div class="tab">
+        <input id="tab-{{p.ID}}" type="checkbox" name="tabs">
+        <label for="tab-{{p.ID}}">Details</label>
+        <div class="tab-content">
+
+            <div class="tab-content--first-row">
+                <h4>{{ p.post_title }}</h4>
+
+                {% if p.acf.url %}
+                    <a class="btn draw-border" target="_blank" href="{{ p.acf.url }}">Visit Website</a>
+                {% endif %}
+            </div>
+
+            {# {% if p.acf.screenshot_1 %}
+                <img src="{{ p.acf.screenshot_1 }}"/>
+            {% endif %}
+
+            {% if p.acf.screenshot_2 %}
+                <img src="{{ p.acf.screenshot_2 }}"/>
+            {% endif %} #}
+
+            {% if p.acf.feature_set %}
+                <div class="mini-list">
+                    <h5>Features</h5>
+                    <ul class="mini-list">
+                        {% for feat in p.acf.feature_set %}
+                            <li>{{ feat.feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            {% if p.acf.challenge_set %}
+                <div class="mini-list">
+                    <h5>Challenges</h5>
+                    <ul>
+                        {% for chall in p.acf.challenge_set %}
+                            <li>{{ chall.challenge }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if p.acf.learning_outcome_set %}
+                <div class="mini-list">
+                    <h5>Learning Outcomes</h5>
+                    <ul>
+                        {% for learn in p.acf.learning_outcome_set %}
+                            <li>{{ learn.learning_outcome }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

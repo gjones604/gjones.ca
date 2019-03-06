@@ -1,0 +1,28 @@
+{
+  "name": "timber",
+  "version": "1.0.0",
+  "description": "The \"_s\" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your Sass, scripts, and task runners however you would like!",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "acb": "auto-comment-bracket assets/scss/ -d -r"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "auto-comment-bracket": "^1.1.2",
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglifyes": "^0.1.3",
+    "jshint": "^2.9.5"
+  }
+}

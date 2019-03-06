@@ -1,0 +1,156 @@
+.buttonfx{
+    color: black; /* button text color */
+    outline: none;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0s;
+  }
+  
+  /* //// Default effect: Slide from Top  //// */
+  
+  .buttonfx:before,
+  .buttonfx:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: #fff; /* onhover background color */
+    z-index: -1;
+    transform: translate3D(0,-100%,0); /* move elements above button so they don't appear initially */
+    transition: all .5s;
+  }
+  
+  .buttonfx:before{
+   // background: #fafcd6; /* button default background color */
+    z-index: -2;
+    transform: translate3D(0,0,0);
+  }
+  
+  .buttonfx:hover{
+      color: #000;
+  }
+  
+  .buttonfx:hover:after{
+    transform: translate3D(0,0,0);
+    transition: all .5s;
+  }
+  
+   
+  /* //// Curtain Down  //// */
+  
+  .curtaindown{
+    border: 1px solid #eee;
+    border-bottom: 4px solid #eee;
+    color: #000;
+  }
+  
+  .curtaindown:before,
+  .curtaindown:after{
+
+    transform: translate3D(0,-100%,0);
+  }
+  
+  .curtaindown:after{
+    transform: translate3D(0,100%,0);
+  }
+  
+  .curtaindown:hover:before,
+  .curtaindown:hover:after{
+    transform: translate3D(0,-50%,0);
+    transition: all .5s;
+  }
+  
+  .curtaindown:hover:after{
+    transform: translate3D(0,50%,0);
+  }
+  
+  /* //// Curtain Up  //// */
+  
+  .curtainup{
+    transform-style: preserve-3d;
+  }
+  
+  .curtainup:before,
+  .curtainup:after{
+    transform-origin: center center;
+    transform: scale(1,0);
+  }
+  
+  
+  .curtainup:hover:before,
+  .curtainup:hover:after{
+    transform: scale(1);
+    border-radius: 0;
+  }
+  
+  /* //// Double Angle In  //// */
+  
+  .angleindouble{
+    border: 1px solid #eee;
+    border-bottom: 4px solid #eee;
+  }
+  
+  .angleindouble:before{
+    top: 0;
+    left: 0;
+    width: 150%;
+    transform-origin: 0 bottom;
+    transform:  translateX(-100%) rotate(-30deg);
+  }
+  
+  .angleindouble:after{
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 150%;
+    transform-origin: right bottom;
+    transform: translateX(100%) rotate(30deg);
+  }
+  
+  .angleindouble:hover:before{
+    left: 0;
+    transform: rotate(0deg);
+    transition: all .5s;
+  }
+  
+  .angleindouble:hover:after{
+    right: 0;
+    transform: rotate(0deg);
+    transition: all .5s;
+  }
+  
+  
+  /* //// Double Take  //// */
+  
+  .doubletake:before,
+  .doubletake:after{
+    width: 200%;
+    transform-origin: 0 bottom;
+    transform: translate3D(-50%,0,0) rotate(-50deg);
+  }
+  
+  .doubletake:before{
+    opacity: .4;
+  }
+  
+  .doubletake:hover:before,
+  .doubletake:hover:after{
+    transform: rotate(0deg);
+    transition: all .25s;
+  }
+  
+  .doubletake:hover:after{
+    transition-delay: .25s;
+  }
+  
+  
+  /* #### Bounce classes #### */
+  
+  .bouncein:hover:before,
+  .bouncein:hover:after{
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66) !important;
+  }

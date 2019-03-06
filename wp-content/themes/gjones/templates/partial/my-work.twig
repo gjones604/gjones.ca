@@ -1,0 +1,23 @@
+<section id="my-work" class="">
+    <div class="grid my-work">
+        {% for p in projects %}
+            {% if p.acf.featured == true %}
+                <h3 class="grid__item one-whole work-title">Most Recent Project</h3>
+                    <div class="work-card-featured grid__item one-whole dark-over">
+                        {% include 'templates/partial/work-card.twig' %}
+                    </div>
+            {% endif %}
+        {% endfor %}
+        
+        
+        <h3 class="grid__item one-whole work-title">Past Projects</h3>
+        <p class="grid__item one-whole center">(in alphabetical order)</p>
+        {% for p in projects %}
+            {% if p.acf.featured == false %}
+                <div class="work-card grid__item sm-one-whole md-one-half one-third clear dark-over">
+                    {% include 'templates/partial/work-card.twig' %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>

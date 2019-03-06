@@ -1,0 +1,18 @@
+{% extends "base-full.twig" %}
+
+{% block content %}
+
+
+    <div class="wrapper">
+        <div class="grid black-bg">
+            {% include ('partial/intro.twig') %}
+            {% include ('partial/skills.twig') %}
+            {% include ('partial/work-history.twig') %}
+            {% include ('partial/business-software.twig') %}
+            {% include ('partial/photo-quote.twig') %}
+        </div>
+
+        {% include ('partial/my-work.twig') %}
+            
+    </div>
+{% endblock %}
