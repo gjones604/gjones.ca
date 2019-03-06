@@ -1,6 +1,7 @@
 *.log
 .vscode
 $Recycle.Bin
+.sass-cache/
 
 .htaccess
 
