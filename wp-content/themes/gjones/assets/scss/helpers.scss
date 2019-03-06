@@ -1,42 +1,40 @@
 /*============================================================================
-  Shopify Timber
-  Copyright 2016 Shopify Inc.
-  Author Carson Shold @cshold
-  Built with Sass - http://sass-lang.com/
-==============================================================================*/
-
-
-/*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
 $viewportIncrement: 1px;
 
-$small: 480px;
-$medium: 768px;
-$large: 769px;
+$tiny: 480px;
+$small: 768px;
+$medium: 1077px;
+$desktop: 1124px;
+$large: 1200px;
 
+$postTiny: $tiny + $viewportIncrement;
 $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
 $preLarge: $large - $viewportIncrement;
 
 /*================ The following are dependencies of csswizardry grid ================*/
 $breakpoints: (
+  'tiny' '(max-width: #{$tiny})',
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
   'large' '(min-width: #{$large})'
 );
+$breakpoint-has-widths: ('tiny', 'small', 'medium', 'desktop', 'large');
 $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
 $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
+
 
 /*============================================================================
   #General Variables
 ==============================================================================*/
 
 // Timber Colors
-$colorPrimary: #3cb878;
-$colorSecondary: #2ad17b;
+$colorPrimary: #00586e;
+$colorSecondary: #076568;
 
 // Button colors
 $colorBtnPrimary: $colorPrimary;
@@ -57,7 +55,7 @@ $colorLinkHover: lighten($colorPrimary, 15%);
 $colorTextBody: #fff;
 
 // Backgrounds
-$colorBody: $colorPrimary;
+$colorBody: #000;
 
 // Border colors
 $colorBorder: #fff;
@@ -94,10 +92,10 @@ $zindexDrawer: 10;
 
 /*================ Typography ================*/
 
-$headerFontStack: 'Crete Round', serif;
+$headerFontStack: Roboto, serif;
 $headerFontWeight: 400;
 
-$bodyFontStack: 'Crete Round', serif;
+$bodyFontStack: Roboto, serif;
 $baseFontSize: 14px; // Henceforth known as 1em
 /*
 @font-face {
@@ -289,6 +287,12 @@ $class-type: unquote(".");
 
 @if $use-silent-classes == true {
   $class-type: unquote("%");
+}
+
+@mixin breakpoint($media-query) {
+  @media only screen and (max-width: $media-query) {
+      @content;
+  }
 }
 
 @mixin grid-media-query($media-query) {
@@ -656,11 +660,11 @@ $class-type: unquote(".");
   #Basic Styles
 ==============================================================================*/
 html {
-  background-color: $colorFooterBg;
+  background-color: #000;
 }
 
 body {
-  background-color: $colorBody;
+  background-color: none-transparent;
 }
 
 [tabindex='-1']:focus {
@@ -1877,3 +1881,133 @@ label.error {
 
 
 
+/*
+
+  Widths
+  
+  Sizes in human readable format. These are used in conjunction with other
+  objects and abstractions, most commonly the grid system.
+ 
+  We have a mixin to generate our widths and their breakpoint-specific
+  variations.
+ 
+*/
+
+@mixin grid-setup($namespace: "") {
+  /**
+  * Whole
+  */
+  .#{$namespace}one-whole, %#{$namespace}one-whole {width: 100%; }
+
+  /**
+  * Halves
+  */
+  .#{$namespace}one-half, %#{$namespace}one-half { width: 50%; }
+
+  /**
+  * Thirds
+  */
+  .#{$namespace}one-third, %#{$namespace}one-third  { width: 33.333%; }
+  .#{$namespace}two-thirds, %#{$namespace}two-thirds { width: 66.666%; }
+
+  /**
+  * Quarters
+  */
+  .#{$namespace}one-quarter, %#{$namespace}one-quarter { width: 25%; }
+  .#{$namespace}two-quarters, %#{$namespace}two-quarters { @extend .#{$namespace}one-half; }
+  .#{$namespace}three-quarters, %#{$namespace}three-quarters { width: 75%; }
+
+  /**
+  * Fifths
+  */
+  .#{$namespace}one-fifth, %#{$namespace}one-fifth             { width: 20%; }
+  .#{$namespace}two-fifths, %#{$namespace}two-fifths           { width:40%;  }
+  .#{$namespace}three-fifths, %#{$namespace}three-fifths       { width:60%;  }
+  .#{$namespace}four-fifths, %#{$namespace}four-fifths         { width: 80%; }
+  
+  /**
+  * Sixths
+  */    
+  .#{$namespace}one-sixth, %#{$namespace}one-sixth             { width:16.666%; }
+  .#{$namespace}two-sixths, %#{$namespace}two-sixths           { @extend .#{$namespace}one-third; }
+  .#{$namespace}three-sixths, %#{$namespace}three-sixths       { @extend .#{$namespace}one-half; }
+  .#{$namespace}four-sixths, %#{$namespace}four-sixths         { @extend .#{$namespace}two-thirds; }
+  .#{$namespace}five-sixths, %#{$namespace}five-sixths         { width:83.333%; }
+  
+  /**
+  * Eighths
+  */
+  .#{$namespace}one-eighth, %#{$namespace}one-eighth           { width:12.5%; }
+  .#{$namespace}two-eighths, %#{$namespace}two-eighths         { @extend .#{$namespace}one-quarter; }
+  .#{$namespace}three-eighths, %#{$namespace}three-eighths     { width:37.5%; }
+  .#{$namespace}four-eighths, %#{$namespace}four-eighths       { @extend .#{$namespace}one-half; }
+  .#{$namespace}five-eighths, %#{$namespace}five-eighths       { width:62.5%; }
+  .#{$namespace}six-eighths, %#{$namespace}six-eighths         { @extend .#{$namespace}three-quarters; }
+  .#{$namespace}seven-eighths, %#{$namespace}seven-eighths     { width:87.5%; }
+  
+  /**
+   * Tenths
+   */
+  .#{$namespace}one-tenth, %#{$namespace}one-tenth             { width:10%; }
+  .#{$namespace}two-tenths, %#{$namespace}two-tenths,          { @extend .#{$namespace}one-fifth; }
+  .#{$namespace}three-tenths, %#{$namespace}three-tenths       { width:30%; }
+  .#{$namespace}four-tenths, %#{$namespace}four-tenths         { @extend .#{$namespace}two-fifths; }
+  .#{$namespace}five-tenths, %#{$namespace}five-tenths,        { @extend .#{$namespace}one-half; }
+  .#{$namespace}six-tenths, %#{$namespace}six-tenths           { @extend .#{$namespace}three-fifths; }
+  .#{$namespace}seven-tenths, %#{$namespace}seven-tenths       { width:70%; }
+  .#{$namespace}eight-tenths, %#{$namespace}eight-tenths       { @extend .#{$namespace}four-fifths; }
+  .#{$namespace}nine-tenths, %#{$namespace}nine-tenths         { width:90%; }
+  
+  /**
+   * Twelfths
+   */
+  .#{$namespace}one-twelfth, %#{$namespace}one-twelfth         { width:8.333%; }
+  .#{$namespace}two-twelfths, %#{$namespace}two-twelfths       { @extend .#{$namespace}one-sixth; }
+  .#{$namespace}three-twelfths, %#{$namespace}three-twelfths   { @extend .#{$namespace}one-quarter; }
+  .#{$namespace}four-twelfths, %#{$namespace}four-twelfths     { @extend .#{$namespace}one-third; }
+  .#{$namespace}five-twelfths, %#{$namespace}five-twelfths     { width:41.666% }
+  .#{$namespace}six-twelfths, %#{$namespace}six-twelfths       { @extend .#{$namespace}one-half; }
+  .#{$namespace}seven-twelfths, %#{$namespace}seven-twelfths   { width:58.333%; }
+  .#{$namespace}eight-twelfths, %#{$namespace}eight-twelfths   { @extend .#{$namespace}two-thirds; }
+  .#{$namespace}nine-twelfths, %#{$namespace}nine-twelfths     { @extend .#{$namespace}three-quarters; }
+  .#{$namespace}ten-twelfths, %#{$namespace}ten-twelfths       { @extend .#{$namespace}five-sixths; }
+  .#{$namespace}eleven-twelfths, %#{$namespace}eleven-twelfths { width:91.666%; }
+}
+
+@include grid-setup;
+
+@include breakpoint($large) {
+  @include grid-setup("xl-");
+}
+
+@include breakpoint($desktop) {
+  @include grid-setup("lg-");
+}
+
+@include breakpoint($medium) {
+  @include grid-setup("md-");
+}
+
+@include breakpoint($small) {
+  @include grid-setup("sm-");
+}
+
+@include breakpoint($tiny) {
+  @include grid-setup("ti-");
+}
+
+// Flexbox grid
+.grid--flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.flex-items-center {
+  align-items: center;
+}
+.flex-items-end {
+  align-items: flex-end;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}

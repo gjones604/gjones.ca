@@ -19,10 +19,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="{{ site.theme.link }}/assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ site.theme.link }}/assets/css/styles.css" type="text/css" media="screen" />
     
     <link rel="author" href="{{ site.theme.link }}/humans.txt" />
     <link rel="pingback" href="{{ site.pingback_url }}" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5458962-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-5458962-3');
+    </script>
 
     {{function('wp_head')}}
