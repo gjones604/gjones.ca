@@ -2,31 +2,19 @@
 .vscode
 $Recycle.Bin
 
-
+.htaccess
 
 wp-config.php
+
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/upgrade/
-wp-content/uploads/
+
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 
 wp-content/themes/gjones/.sass-cache/
-wp-content/themes/gjones/assets/js/three-js/
 wp-content/themes/gjones/node_modules/
-wp-content/themes/gjones/vendor/
-wp-content/themes/gjones/php-lib/course-cache/
-wp-content/themes/gjones/php-lib/ratchet/
-wp-content/themes/gjones/php-lib/tracy/
-
-
-/.htaccess
-/license.txt
-/readme.html
-/sitemap.xml
-/sitemap.xml.gz
-
